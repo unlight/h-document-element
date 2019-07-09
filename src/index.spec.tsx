@@ -71,7 +71,7 @@ it('class component with props', () => {
 
 it('create unknown factory', () => {
     expect(() => {
-        createElement(null);
+        createElement(null as any, null as any);
     }).toThrow('Expected string, function or class');
 });
 

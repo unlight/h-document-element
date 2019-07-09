@@ -1,7 +1,7 @@
 module.exports = {
     "root": true,
     "env": {
-        "node": true,
+        "browser": true,
         "jest": true,
         "jest/globals": true,
     },
@@ -31,6 +31,7 @@ module.exports = {
         "plugin:jest/recommended",
     ],
     "rules": {
+        "no-unused-vars": 0,
         "quotes": [1, "single", { "allowTemplateLiterals": true }],
         "semi": [1, "always"],
         // wix-editor
@@ -45,6 +46,11 @@ module.exports = {
         // unicorn
         "unicorn/import-index": 0,
         "unicorn/catch-error-name": 0,
+        "unicorn/prevent-abbreviations": [1, {
+            "replacements": {
+                "props": false,
+            }
+        }],
         // import
         "import/newline-after-import": 0,
         "import/no-duplicates": 1,

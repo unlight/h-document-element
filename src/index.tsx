@@ -1,21 +1,34 @@
+import { ConstructorFor, AnyFunc, PlainObject } from 'simplytyped'; // tslint:disable-line:no-implicit-dependencies
+
 const specialProps = new Map([
     ['class', 'className'],
     ['for', 'htmlFor'],
 ]);
 
-const elementFactories: any[] = [
-    [x => typeof x === 'function' && x.prototype && 'render' in x.prototype, (x, props) => new x(props).render()],
-    [x => typeof x === 'function', (x, props) => x(props)],
-    [x => typeof x === 'string', (x) => document.createElement(x)],
-    [() => true, undefined],
+type ConstructorForRenderObject = ConstructorFor<{ render: Function }>;
+
+type CreateElementName = string | AnyFunc | ConstructorForRenderObject;
+
+type ElementFactory = [
+    (x: CreateElementName) => boolean,
+    ((x: CreateElementName, props: PlainObject) => HTMLElement)
 ];
 
-export function createElement(name: any, props: any, ...children: any[]): HTMLElement {
-    const [, elementFactory] = elementFactories.find(([test]) => test(name));
-    if (elementFactory == null) {
+const createFactories: ElementFactory[] = [
+    [x => typeof x === 'function' && x.prototype && 'render' in x.prototype, (x, props) => {
+        return new (x as ConstructorForRenderObject)(props).render();
+    }],
+    [x => typeof x === 'function', (x, props) => (x as AnyFunc)(props)],
+    [x => typeof x === 'string', (x) => document.createElement(x as string)],
+];
+
+export function createElement(name: CreateElementName, props: PlainObject, ...children: Node[]): HTMLElement {
+    const factory = createFactories.find(([match]) => match(name));
+    if (!factory) {
         throw new Error(`Expected string, function or class, but given ${name}`);
     }
-    const element = elementFactory(name, props);
+    const [, create] = factory;
+    const element = create(name, props);
     if (props != null) {
         for (let [name, value] of Object.entries(props)) {
             if (name.startsWith('on')) {
@@ -29,7 +42,7 @@ export function createElement(name: any, props: any, ...children: any[]): HTMLEl
     return element;
 }
 
-export function Fragment({ children }: any) {
+export function Fragment({ children }: any) { // tslint:disable-line:function-name
     return children;
 }
 
