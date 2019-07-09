@@ -1,0 +1,7 @@
+{
+  "whitelistedNonPeerDependencies": [],
+  "lib": {
+    "jsx": "react",
+    "entryFile": "src/index"
+  }
+}
