@@ -48,7 +48,7 @@ If you need IE, you need polyfill for:
 * [Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries#Polyfill)
 * [ParentNode.append()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append#Polyfill)
 * [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-* [Array.flat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
+* [Array.flat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
 
 ## Similar Projects
 - https://github.com/LeDDGroup/tsx-create-html-element
