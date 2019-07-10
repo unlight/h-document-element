@@ -2,7 +2,7 @@
   "name": "h-document-element",
   "version": "0.0.0-dev",
   "license": "MIT",
-  "description": "",
+  "description": "Create html elements from jsx (tsx) syntax",
   "main": "index.js",
   "typings": "index.d.ts",
   "author": "2019",
@@ -83,5 +83,13 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/h-document-element.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unlight/h-document-element/issues"
+  },
+  "homepage": "https://github.com/unlight/h-document-element#readme"
 }
