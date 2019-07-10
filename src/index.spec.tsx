@@ -75,11 +75,33 @@ it('create unknown factory', () => {
     }).toThrow('Expected string, function or class');
 });
 
+it('child with functional children components', () => {
+    const S = (props: any) => {
+        return <s>{props.children}R</s>;
+    }
+    const T = (props: any) => {
+        return <S>L{props.children}</S>;
+    };
+    expect((<T>A</T>).outerHTML).toBe('<s>LAR</s>');
+});
+
+it('fragment as child', () => {
+    expect((<div><Fragment><p /><b /></Fragment></div>).outerHTML).toBe('<div><p></p><b></b></div>');
+});
+
+it('fragment as child with functional components', () => {
+    const Em = ({ children }: any) => <em>{children}</em>;
+    expect((<div><Fragment><Em>A</Em><Em>{'B'}</Em></Fragment></div>).outerHTML).toBe('<div><em>A</em><em>B</em></div>');
+});
+
+it('fragment one child', () => {
+    const fragment: DocumentFragment = <Fragment><p>F<s/></p></Fragment>;
+    const element = document.createElement('main');
+    element.append(fragment);
+    expect(element.innerHTML).toBe('<p>F<s></s></p>');
+});
+
 it.skip('is attribute', () => {
     customElements.define('custom-a', class CustomAnchorElement extends HTMLAnchorElement { });
     expect((<a is="custom-anchor" />).outerHTML).toBe('<a is="custom-anchor"></a>');
-});
-
-it.skip('fragment one child', () => {
-    expect((<Fragment><p>F</p></Fragment>).outerHTML).toBe('<p>F</p>');
 });

@@ -38,16 +38,17 @@ document.body.appendChild(divElement);
 
 ## Browser Support
 Only modern browsers are supported:
-* Chrome 54
-* Edge 17
-* Firefox 49
-* Opera 41
-* Safari 10.1
+* Chrome 69
+* Edge 76
+* Firefox 62
+* Opera 56
+* Safari 12
 
 If you need IE, you need polyfill for:
 * [Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries#Polyfill)
 * [ParentNode.append()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append#Polyfill)
 * [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+* [Array.flat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
 
 ## Similar Projects
 - https://github.com/LeDDGroup/tsx-create-html-element

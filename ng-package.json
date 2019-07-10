@@ -4,6 +4,7 @@
   ],
   "lib": {
     "jsx": "react",
-    "entryFile": "src/index"
+    "entryFile": "src/index",
+    "languageLevel": ["dom", "esnext"]
   }
 }

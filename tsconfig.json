@@ -6,6 +6,7 @@
     "importHelpers": true,
     "strict": true,
     "noImplicitAny": false,
+    "noUnusedLocals": false,
     "experimentalDecorators": false,
     "emitDecoratorMetadata": false,
     "outDir": "dist",
