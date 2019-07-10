@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/tslint/config */
-import { createElement } from '.';
+import { createElement, Fragment } from '.';
 
 it('smoke', () => {
     expect(createElement).toBeTruthy();
@@ -80,4 +80,6 @@ it.skip('is attribute', () => {
     expect((<a is="custom-anchor" />).outerHTML).toBe('<a is="custom-anchor"></a>');
 });
 
-it.todo('fragment');
+it.skip('fragment one child', () => {
+    expect((<Fragment><p>F</p></Fragment>).outerHTML).toBe('<p>F</p>');
+});
