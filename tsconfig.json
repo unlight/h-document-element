@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
-    "importHelpers": true,
+    "importHelpers": false,
     "strict": true,
     "noImplicitAny": false,
     "noUnusedLocals": false,
@@ -18,13 +18,7 @@
     "skipLibCheck": true,
     "jsx": "react",
     "jsxFactory": "createElement",
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "lib": ["dom", "esnext"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

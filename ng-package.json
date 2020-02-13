@@ -1,7 +1,5 @@
 {
-  "whitelistedNonPeerDependencies": [
-    "simplytyped"
-  ],
+  "whitelistedNonPeerDependencies": ["simplytyped"],
   "lib": {
     "jsx": "react",
     "entryFile": "src/index",

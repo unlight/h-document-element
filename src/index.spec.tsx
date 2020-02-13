@@ -33,21 +33,42 @@ it('children', () => {
 });
 
 it('children nested', () => {
-    expect((<div>{'foo'}<p>{'bar'}</p></div>).outerHTML).toBe('<div>foo<p>bar</p></div>');
+    expect(
+        (
+            <div>
+                {'foo'}
+                <p>{'bar'}</p>
+            </div>
+        ).outerHTML,
+    ).toBe('<div>foo<p>bar</p></div>');
 });
 
 it('children more nested', () => {
-    expect((<div>{'foo'}<p>{'bar'}<a>A</a></p></div>).outerHTML).toBe('<div>foo<p>bar<a>A</a></p></div>');
+    expect(
+        (
+            <div>
+                {'foo'}
+                <p>
+                    {'bar'}
+                    <a>A</a>
+                </p>
+            </div>
+        ).outerHTML,
+    ).toBe('<div>foo<p>bar<a>A</a></p></div>');
 });
 
 it('functional component', () => {
     const TestComponent = () => <p></p>;
-    expect((<div><TestComponent /></div>).outerHTML).toBe('<div><p></p></div>');
+    expect(
+        (
+            <div>
+                <TestComponent />
+            </div>
+        ).outerHTML,
+    ).toBe('<div><p></p></div>');
 });
 
-it('functional component with props', () => {
-
-});
+it('functional component with props', () => {});
 
 it('class component', () => {
     class TestComponent {
@@ -56,14 +77,25 @@ it('class component', () => {
             return <p></p>;
         }
     }
-    expect((<div><TestComponent /></div>).outerHTML).toBe('<div><p></p></div>');
+    expect(
+        (
+            <div>
+                <TestComponent />
+            </div>
+        ).outerHTML,
+    ).toBe('<div><p></p></div>');
 });
 
 it('class component with props', () => {
     class TestComponent {
-        constructor(public props) { }
+        constructor(public props) {}
         render() {
-            return <p>{this.props.string}{this.props.number}</p>;
+            return (
+                <p>
+                    {this.props.string}
+                    {this.props.number}
+                </p>
+            );
         }
     }
     expect((<TestComponent string={'S'} number={1} />).outerHTML).toBe('<p>S1</p>');
@@ -78,7 +110,7 @@ it('create unknown factory', () => {
 it('child with functional children components', () => {
     const S = (props: any) => {
         return <s>{props.children}R</s>;
-    }
+    };
     const T = (props: any) => {
         return <S>L{props.children}</S>;
     };
@@ -86,22 +118,46 @@ it('child with functional children components', () => {
 });
 
 it('fragment as child', () => {
-    expect((<div><Fragment><p /><b /></Fragment></div>).outerHTML).toBe('<div><p></p><b></b></div>');
+    expect(
+        (
+            <div>
+                <Fragment>
+                    <p />
+                    <b />
+                </Fragment>
+            </div>
+        ).outerHTML,
+    ).toBe('<div><p></p><b></b></div>');
 });
 
 it('fragment as child with functional components', () => {
     const Em = ({ children }: any) => <em>{children}</em>;
-    expect((<div><Fragment><Em>A</Em><Em>{'B'}</Em></Fragment></div>).outerHTML).toBe('<div><em>A</em><em>B</em></div>');
+    expect(
+        (
+            <div>
+                <Fragment>
+                    <Em>A</Em>
+                    <Em>{'B'}</Em>
+                </Fragment>
+            </div>
+        ).outerHTML,
+    ).toBe('<div><em>A</em><em>B</em></div>');
 });
 
 it('fragment one child', () => {
-    const fragment: DocumentFragment = <Fragment><p>F<s/></p></Fragment>;
+    const fragment: DocumentFragment = (
+        <Fragment>
+            <p>
+                F<s />
+            </p>
+        </Fragment>
+    );
     const element = document.createElement('main');
     element.append(fragment);
     expect(element.innerHTML).toBe('<p>F<s></s></p>');
 });
 
 it.skip('is attribute', () => {
-    customElements.define('custom-a', class CustomAnchorElement extends HTMLAnchorElement { });
+    customElements.define('custom-a', class CustomAnchorElement extends HTMLAnchorElement {});
     expect((<a is="custom-anchor" />).outerHTML).toBe('<a is="custom-anchor"></a>');
 });
